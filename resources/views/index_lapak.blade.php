@@ -17,6 +17,10 @@
 		</div>
 		<div>
 			<div class="btn-group btn-group-toggle" data-toggle="buttons">
+				<button class="btn btn-light btn-sm" onclick="window.location.href='/provinsi'">Provinsi</button>
+		    <button class="btn btn-light btn-sm" onclick="window.location.href='/provinsi'">Pilihan</button>
+		    <button class="btn btn-light btn-sm" onclick="window.location.href='/provinsi'">Lapak</button>
+		    <button class="btn btn-success btn-sm active" onclick="window.location.href='/'">Item</button>
   
 			</div>
 		</div>
