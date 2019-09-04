@@ -12,7 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('index_provinsi');
+    return view('index_provinsi'); 
 });
+
+Route::get('/provinsi','ProvinsiController@index');
+Route::post('/provinsi/add','ProvinsiController@add');
+Route::get('/provinsi/edit/{id}','ProvinsiController@edit');
+Route::post('/provinsi/update','ProvinsiController@update');
+
+
 
 
