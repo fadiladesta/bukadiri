@@ -226,7 +226,19 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+<<<<<<< HEAD
         'Datatables'=> Yajra\Datatables\Facades\Datatables::class,
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+        'Datatables' => Yajra\Datatables\Facades\Datatables::class,
+=======
+        'Datatables'=>Yajra\Datatables\Facades\Datatables::class,
+>>>>>>> b52cac8ba70417f6f8329d9f78374e831415fbbf
+=======
+        'Datatables' =>Yajra\Datatables\Facades\Datatables::class,
+>>>>>>> e5e7ca49c71df9e7f4cbc018d1e34b34f4332bac
+>>>>>>> 61de0ec7d7d17ade823a5c0f95dfdfe784c4eea9
 
     ],
 
