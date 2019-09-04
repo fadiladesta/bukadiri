@@ -11,9 +11,15 @@
 |
 */
 
+<<<<<<< HEAD
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+=======
+Route::get('/', function () {
+    return view('index_provinsi');
+});
+>>>>>>> 3f8ef9df4f33ebe231ac5266ac785ec75c8d6d65
 
 Route::get('/provinsi', function () {
     return view('index_provinsi');

@@ -17,9 +17,9 @@ class CreatePilihanTable extends Migration
             $table->primary('kode_pilihan');
             $table->string('kode_pilihan',5);
             $table->string('nama_pilihan');
-            $table->integer('diskon_pilihan');
+            $table->integer('diskon_pilihan')->nullable(true);
             $table->integer('isdelete');
-            $table->dateTime('tanggal_hapus');
+            $table->dateTime('tanggal_hapus')->nullable(true);
             $table->timestamps();
         });
     }
