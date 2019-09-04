@@ -14,12 +14,12 @@ class CreateLapakTable extends Migration
     public function up()
     {
         Schema::create('lapak', function (Blueprint $table) {
-            $table->string('kode_lapak', 5)->nullable(false);
+            $table->string('kode_lapak', 5);
             $table->primary('kode_lapak');
-            $table->string('nama_lapak')->nullable(false);
-            $table->integer('peringkat_lapak');
-            $table->integer('is_delete')->nullable(false);
-            $table->dateTime('tanggal_hapus');
+            $table->string('nama_lapak');
+            $table->integer('peringkat_lapak')->nullable(true);
+            $table->integer('is_delete');
+            $table->dateTime('tanggal_hapus')->nullable(true);
             $table->timestamps();
         });
     }
