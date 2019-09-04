@@ -203,8 +203,8 @@
 						}
 						if (data.success) {
 							html = '<div class="alert alert-success alert-dismissible fade show" role="alert"><strong>Selamat!</strong>'+data.success+'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
-							$("#formLapak")[0].reset();
-							// $("#myTable").DataTable().ajax.reload();
+							//$("#formLapak")[0].reset();
+							$("#myTable").DataTable().ajax.reload();
 						}
 						$("#notif").html(html);
 					}
