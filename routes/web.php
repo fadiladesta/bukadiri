@@ -21,4 +21,10 @@ Route::get('/lapak/lihat/{id}', 'LapakController@lihat');
 Route::get('/lapak/edit/{id}', 'LapakController@edit');
 Route::post('/lapak/update', 'LapakController@ubah');
 
+Route::get('/provinsi','ProvinsiController@index');
+Route::post('/provinsi/add','ProvinsiController@add');
+Route::get('/provinsi/edit/{id}','ProvinsiController@edit');
+Route::post('/provinsi/update','ProvinsiController@update');
+
+
 
