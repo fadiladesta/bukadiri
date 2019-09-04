@@ -14,7 +14,7 @@
 
 Route::get('/home', function () {
     return view('index_pilihan');
-=======
+});
 // Route::get('/', function () {
 
 //     return view('welcome');
