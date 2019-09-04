@@ -1,0 +1,36 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreatePilihanTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('pilihan', function (Blueprint $table) {
+            $table->primary('kode_pilihan');
+            $table->string('kode_pilihan',5);
+            $table->string('nama_pilihan');
+            $table->integer('diskon_pilihan');
+            $table->integer('isdelete');
+            $table->dateTime('tanggal_hapus');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('pilihan');
+    }
+}
