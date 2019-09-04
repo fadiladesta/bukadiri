@@ -227,7 +227,11 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 <<<<<<< HEAD
+<<<<<<< HEAD
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
+=======
+        'Datatables'=>Yajra\Datatables\Facades\Datatables::class,
+>>>>>>> b52cac8ba70417f6f8329d9f78374e831415fbbf
 =======
         'Datatables' =>Yajra\Datatables\Facades\Datatables::class,
 >>>>>>> e5e7ca49c71df9e7f4cbc018d1e34b34f4332bac
