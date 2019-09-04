@@ -11,8 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index_pilihan');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/provinsi', function () {
+    return view('index_provinsi');
 });
 
-
+Route::get('/','ItemController@index');
+Route::post('/item/tambah','ItemController@tambah');
+Route::get('/item/ubah/{id}','ItemController@edit');
+Route::post('/item/update','ItemController@ubah');
