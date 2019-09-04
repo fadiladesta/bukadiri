@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('index_pilihan');
+    return view('index_provinsi');
 });
 
 

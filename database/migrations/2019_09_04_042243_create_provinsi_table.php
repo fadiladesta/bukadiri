@@ -17,9 +17,9 @@ class CreateProvinsiTable extends Migration
             $table->primary('kode_provinsi');
             $table->string('kode_provinsi',5);
             $table->string('nama_provinsi');
-            $table->integer('jumlah_kota_provinsi');
+            $table->integer('jumlah_kota_provinsi')->nullable(true);
             $table->integer('isdelete');
-            $table->dateTime('tanggal_hapus'); 
+            $table->dateTime('tanggal_hapus')->nullable(true);
             $table->timestamps();
         });
     }
