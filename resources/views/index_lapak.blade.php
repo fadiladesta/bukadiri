@@ -87,7 +87,7 @@
 	</div> <!-- //penutup add -->
 
 	<!-- Modal Detail -->
-	<!-- <div id="myModalDetail" class="modal fade" tabindex="-1" role="dialog"
+	<div id="myModalDetail" class="modal fade" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
     	<div class="modal-content">
@@ -119,7 +119,7 @@
       			</div>
     		</div>
  		</div>
-	</div> --> <!-- penutup detail -->
+	</div> <!-- penutup detail -->
 
 
 </body>
