@@ -25,9 +25,9 @@
 
 	<center><div class="btn-group btn-group-toggle" data-toggle="buttons" >
 		    <button class="btn btn-success btn-sm active" onclick="window.location.href='/provinsi'">Provinsi</button>
-		    <button class="btn btn-light btn-sm" onclick="window.location.href='/provinsi'">Pilihan</button>
-		    <button class="btn btn-light btn-sm" onclick="window.location.href='/provinsi'">Lapak</button>
-		    <button class="btn btn-light btn-sm" onclick="window.location.href='/provinsi'">Item</button>
+		    <button class="btn btn-light btn-sm" onclick="window.location.href='/pilihan'">Pilihan</button>
+		    <button class="btn btn-light btn-sm" onclick="window.location.href='/lapak'">Lapak</button>
+		    <button class="btn btn-light btn-sm" onclick="window.location.href='/item'">Item</button>
 			</div></center><br>
 		<h3 style="text-align: center;">DATA PROVINSI</h3>
 		<div>

@@ -26,7 +26,7 @@
 		<div>
 			<center><div class="btn-group btn-group-toggle" data-toggle="buttons">
 				<button class="btn btn-light btn-sm" onclick="window.location.href='/provinsi'">Provinsi</button>
-		    <button class="btn btn-light btn-sm" onclick="window.location.href='/index_pilihan'">Pilihan</button>
+		    <button class="btn btn-light btn-sm" onclick="window.location.href='/pilihan'">Pilihan</button>
 		    <button class="btn btn-success btn-sm active" onclick="window.location.href='/lapak'">Lapak</button>
 		    <button class="btn btn-light btn-sm" onclick="window.location.href='/item'">Item</button>
 			</div></center>
