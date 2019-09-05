@@ -46,6 +46,9 @@ Route::get('/provinsi','ProvinsiController@index');
 Route::post('/provinsi/add','ProvinsiController@add');
 Route::get('/provinsi/edit/{id}','ProvinsiController@edit');
 Route::post('/provinsi/update','ProvinsiController@update');
+Route::get('/provinsi/detail/{id}','ProvinsiController@lihat');
+Route::get('/provinsi/hapus/{id}','ProvinsiController@hapus');
+Route::get('/provinsi/aktif/{id}','ProvinsiController@aktif');
 
 
 Route::get('/pilihan','PilihanController@index');

@@ -4,6 +4,11 @@
 	<title>Master Provinsi</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/datatables.min.css">
+	<style type="text/css">
+		table{
+			text-align: center;
+		}
+	</style>
 
 	<script type="text/javascript" src="assets/js/jquery.min.js"></script>
 	<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
@@ -11,21 +16,33 @@
 </head>
 <body>
 <div class="container">
-		<h1 style="text-align: center;">DATA PROVINSI</h1>
+		
+	<div style="text-align: right;">
+			<center><img src="logobukadiri.jpg" width="30%" height="30%"></center>
+			<button class="btn btn-primary active">Home</button>
+			<button class="btn btn-primary">Setting</button>
+	</div>
+
+	<center><div class="btn-group btn-group-toggle" data-toggle="buttons" >
+		    <button class="btn btn-success btn-sm active" onclick="window.location.href='/provinsi'">Provinsi</button>
+		    <button class="btn btn-light btn-sm" onclick="window.location.href='/provinsi'">Pilihan</button>
+		    <button class="btn btn-light btn-sm" onclick="window.location.href='/provinsi'">Lapak</button>
+		    <button class="btn btn-light btn-sm" onclick="window.location.href='/provinsi'">Item</button>
+			</div></center><br>
+		<h3 style="text-align: center;">DATA PROVINSI</h3>
 		<div>
 		<button type="button" class="btn btn-primary" data-toggle="modal" id="buttonAdd">
-  Tambah Data</button>
- <!--  <button type="button" class="btn btn-primary" data-toggle="modal" id="buttonEdit">
-  Edit Data</button>  -->
+  Tambah</button>
+
   <br><br>
-  <span id="notif">
-		  
+ 	 <span id="notif">
+		   
 	</span>
-	</div>
+		</div>
 	<br>
 		<table class="table table-bordered" id="myTable">
 			<thead style="text-align: center;"> 
-			<tr style="background-color: lightgreen;">
+			<tr style="background-color: crimson;">
 				<th>Kode Provinsi</th>
 				<th>Nama Provinsi</th>
 				<th>Status</th>	
@@ -35,9 +52,9 @@
 			</tr>
 			</thead>		
 		</table>
-	</div> <!-- penutup kontainer -->
+</div> <!-- penutup kontainer -->
 
-<!-- modal tambah -->
+<!-- modal tambah dan edit -->
 <div id="myModal" class="modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -50,29 +67,106 @@
 		        </button>
 		      </div>
 		      <div class="modal-body">
-		      	<input type="text" name="action" id="action">
+		      	
 		       <table>
 		       	<tr>
 		       		<td>Kode Provinsi</td>
-		       		<td><input type="text" name="kode_provinsi" id="kode_provinsi" placeholder="Kode Provinsi" required=""></td>
+		       		<td><input type="text" name="kode_provinsi" id="kode_provinsi" placeholder="Kode Provinsi"></td>
 		       	</tr>
 		       	<tr>
 		       		<td>Nama Provinsi</td>
-		       		<td><input type="text" name="nama_provinsi" id="nama_provinsi" placeholder="Nama Provinsi" required=""></td>
+		       		<td><input type="text" name="nama_provinsi" id="nama_provinsi" placeholder="Nama Provinsi"></td>
 		       	</tr>
 		       	<tr>
 		       		<td>Jumlah Kota Provinsi</td>
-		       		<td><input type="text" name="jumlah_kota_provinsi" id="jumlah_kota_provinsi" placeholder="Jumlah Kota Provinsi" required=""></td>
+		       		<td><input type="text" name="jumlah_kota_provinsi" id="jumlah_kota_provinsi" placeholder="Jumlah Kota Provinsi"></td>
 		       	</tr>
 		       </table>
 		         </div>
 			 	  <div class="modal-footer">
+			 	  <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
 		        <button type="submit" class="btn btn-primary" id="tombol_action">Save Change</button>
 		      </div>
 	    </form>
 	 </div>
-  </div>
+  </div> 
 </div> <!-- penutup modal tambah -->
+
+<!-- Modal Detail -->
+<div id="myModalDetail" class="modal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<form id="formProvinsi">
+				@csrf
+				<div class="modal-header">
+					<h5 class="modal-title-detail">Detail Data Provinsi</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>	
+					 <span aria-hidden="true">&times;</span>		
+				</div>
+				<div class="modal-body">
+					<input type="text" name="detail" id="detail">
+					<table>
+						<tr>
+							<td>Kode Provinsi</td>
+							<td id="kode_provinsi_detail"></td>
+						</tr>
+						<tr>
+							<td>Nama Provinsi</td>
+							<td id="nama_provinsi_detail"></td>
+						</tr>
+						<tr>
+							<td>Jumlah Kota Provinsi</td>
+							<td id="jumlah_kota_provinsi_detail"></td>
+						</tr>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<!--<button type="button" class="btn btn-secondary">close</button> -->
+					 <button type="submit" class="btn-primary" id="tombol_action">OK</button> 
+ 				</div>
+			</form>		
+		</div>	
+	</div>	
+</div> <!-- penutup modal detail -->
+
+<!-- Modal Hapus -->
+<div class="modal fade" id="myModalDelete">
+	<div class="modal-dialog">
+		<div class="modal-content" style="margin-top: 100px">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
+				</button> 
+			</div>
+				<div class="modal-body">
+					<h4 class="modal-title-hapus" style="text-align: center;">Hapus Data?</h4>
+				</div>			
+				<div class="modal-footer" style="margin: 0px; border-top:0px; text-align:center;">
+				<button class="btn btn-danger" id="delete_button">Hapus</button>
+				<button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+			</div>
+		</div>
+	</div>
+</div> <!-- penutup -->
+
+<!-- Modal popup untuk Aktif -->
+<div class="modal fade" id="modal_aktif">
+	<div class="modal-dialog">
+		<div class="modal-content" style="margin-top: 100px">
+			<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
+			</button> 
+			</div>
+			<div class="modal-body">
+			<h4 class="modal-title-aktif" style="text-align: center;">Aktifkan?</h4>
+			</div>			
+			<div class="modal-footer" style="margin: 0px; border-top:0px; text-align:center;">
+				<button class="btn btn-danger" id="aktif_button">Aktif</button>
+				<button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+			</div>
+		</div>
+	</div>
+</div> <!-- penutup modal aktif -->
+
 
 </body>
 <script type="text/javascript">
@@ -80,7 +174,7 @@
 		$("#buttonAdd").click(function(){  //klik buttonAdd
 			$(".modal-title").text('Tambah Data Provinsi'); //muncul title modal
 			$("#tombol_action").text('OK'); //nama tombol
-			$("#action").val('Tambah') //set value di id:action
+			//$("#action").val('Tambah') //set value di id:action
 			$("#myModal").modal('show'); //menampilkan modal
 		});
 
@@ -89,12 +183,20 @@
 			e.preventDefault();
 			var action= $("#action").val(); //get value
 			var kode_provinsi = $("#kode_provinsi").val();
+			var nama_provinsi = $("#nama_provinsi").val();
+			var jumlah_kota_provinsi = $("#jumlah_kota_provinsi").val();
+			//if (action == "tambah") {
 			
 			if (action=='Tambah') { //ketika action tambah tambah
 				//alert("ajax untuk tambah");
-				if (kode_provinsi.length > 5 || kode_provinsi.length <5) {
-					alert('karakter harus 5 digit');
-
+				if (kode_provinsi == "") {
+					alert('Kode provinsi tidak boleh kosong');
+				}else if (nama_provinsi == "") {
+					alert('Nama provinsi tidak boleh kosong');
+				}else if (jumlah_kota_provinsi == "") {
+					alert('Jumlah kota provinsi tidak boleh kosong');
+				}else if (kode_provinsi.length > 5 || kode_provinsi.length < 5) {
+					alert('Karakter harus 5 digit');
 				}else{
 					$.ajax({
 					url: "/provinsi/add",
@@ -144,7 +246,7 @@
 					orderable: false
 				},
 				{
-					data: 'lihat', //samakan dengan @index di controller
+					data: 'lihat', 
 					name: 'lihat',
 					orderable: false
 				},
@@ -220,6 +322,73 @@
 				}); //penutup
 				}
 			} //if tambah
+		});
+
+        //detail
+		$(document).on('click','.detail',function(){
+			var id = $(this).attr('id');
+			$.ajax({
+				url:"/provinsi/detail/"+id,
+				dataType:"json",
+				success:function(detail){ //detail didini adalah variable
+					$("#kode_provinsi_detail").text(detail.data[0].kode_provinsi);
+					$("#nama_provinsi_detail").text(detail.data[0].nama_provinsi);
+					$("#jumlah_kota_provinsi_detail").text(detail.data[0].jumlah_kota_provinsi);
+
+					$("#detail").val('Detail'); //aet value di id:detail
+					$("#myModalDetail").modal('show');
+				}
+			});
+		});
+
+
+		//hapus
+		var hapus;
+		$(document).on('click','.delete',function(){
+			hapus = $(this).attr('id');
+			$("#myModalDelete").modal('show');
+		});
+
+		$("#delete_button").click(function(){
+			$.ajax({
+				url:"/provinsi/hapus/"+hapus,
+				beforesend:function(){
+					$("#delete_button").text('Sedang menghapus...');
+				},
+				success:function(){
+					setTimeout(function(){
+						$("#myModalDelete").modal('hide');
+						$("#delete_button").text('Ok');
+						$("#myTable").DataTable().ajax.reload();
+					},500);
+				}
+			});
+		});
+
+
+		//aktif
+		var aktif;
+		$(document).on('click','.aktif',function(){
+			aktif = $(this).attr('id');
+			//alert(id);
+			$("#modal_aktif").modal('show');
+		});//penutup delete
+		//action delete
+		$("#aktif_button").click(function(){
+			$.ajax({
+				url:"/provinsi/aktif/"+aktif,
+				beforeSend:function(){
+					$("#aktif_button").text('Mengaktifkan...');
+
+				},
+				success:function(){
+					setTimeout(function(){
+						$("#modal_aktif").modal('hide');
+						$("#aktif_button").text('Ok');
+						$("#myTable").DataTable().ajax.reload();
+					},500);
+				}
+			});
 		});
 
 	});
