@@ -15,18 +15,18 @@ class LapakController extends Controller
 	            	if ($data->is_delete==0) {
 	            		$button = '<button type="button"
 	            		name="status" id="'.$data->kode_lapak.'"
-	            		class="btn btn-outline-dark
-	            		btn-sm">NonAktif</button>';
+	            		class="status btn btn-info
+	            		btn-sm">Aktifkan</button>';
 	            		$button .= "&nbsp;&nbsp;";
 	            		$button .= '<button type="button"
 	            		name="status" id="'.$data->kode_lapak.'"
-	            		class="aktif btn btn-info
-	            		btn-sm">Aktif</button>';
+	            		class="btn alert-danger
+	            		btn-sm">NonAktif</button>';
 	            		return $button;
 	            	}else{
 	            		$button = '<button type="button"
 	            		name="status" id="'.$data->kode_lapak.'"
-	            		class="btn btn-success disabled
+	            		class="btn alert-success
 	            		btn-sm">Aktif</button>';
 	            		return $button;
 	            	}
@@ -111,4 +111,26 @@ class LapakController extends Controller
 
     	return response()->json(['success'=>'Data is Successfully Updated.']);
 	}
+
+	public function hapus($kode_lapak)
+    {
+    	$is_delete = 0;
+    	$form_data = array(
+            'is_delete' => $is_delete,
+        );
+  		$kode_pel = Lapak::where('kode_lapak','=', $kode_lapak)->update($form_data);
+    	return response()->json(['success' => 'Data Berhasil Dihapus.']);
+    	
+    }
+
+    public function status($kode_lapak)
+    {
+    	$is_delete = 1;
+    	$form_data = array(
+            'is_delete' => $is_delete,
+        );
+  		$kode_pel = Lapak::where('kode_lapak','=', $kode_lapak)->update($form_data);
+    	return response()->json(['success' => 'Data Berhasil Diaktifkan.']);
+    	
+    }             
 }

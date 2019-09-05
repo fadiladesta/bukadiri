@@ -4,39 +4,46 @@
 	<title>Buka Diri</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/datatables.min.css">
+	<style type="text/css">
+		div#myTable_length{
+			text-align: left;
+		}
+		div#myTable_info{
+			text-align: left;
+		}
+	</style>
 	<script type="text/javascript" src="assets/js/jquery.min.js"></script>
 	<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="assets/js/datatables.min.js"></script>
 </head>
 <body>
 	<div class="container">
-		<h2 style="text-align: center;">Data Lapak</h2>
+		<center><img src="logobukadiri.jpg" width="30%" height="30%"></center>
 		<div style="text-align: right">
-			<button type="button" class="btn btn-primary">Home</button>
-			<button type="button" class="btn btn-primary">Setting</button>
+			<button type="button" class="btn btn-primary" onclick="window.location.href='/'">Halaman Utama</button>
+			<button type="button" class="btn btn-primary" onclick="window.location.href='/pengaturan'">Pengaturan</button>
 		</div>
 		<div>
-			<div class="btn-group btn-group-toggle" data-toggle="buttons">
+			<center><div class="btn-group btn-group-toggle" data-toggle="buttons">
 				<button class="btn btn-light btn-sm" onclick="window.location.href='/provinsi'">Provinsi</button>
-		    <button class="btn btn-light btn-sm" onclick="window.location.href='/provinsi'">Pilihan</button>
+		    <button class="btn btn-light btn-sm" onclick="window.location.href='/index_pilihan'">Pilihan</button>
 		    <button class="btn btn-success btn-sm active" onclick="window.location.href='/lapak'">Lapak</button>
 		    <button class="btn btn-light btn-sm" onclick="window.location.href='/item'">Item</button>
-  
-			</div>
+			</div></center>
 		</div>
 		<hr>
 		<div>
+			<h4 style="text-align: center;">Data Lapak</h4>
 			<button type="button" class="btn btn-primary" id="buttonAdd">Tambah</button>
 			<br><br>
 			<span id="notif">
 				
 			</span>
 		</div>
-		<span id="form_result" style="margin: 2px;"></span>
 		<br>
 		<div style="text-align: center;">
 			<table class="table table-bordered" id="myTable">
-				<thead style="background-color: salmon;">
+				<thead style="background-color: crimson; color: white;">
 					<tr>
 						<th>Kode Lapak</th>
 						<th>Nama Lapak</th>
@@ -67,19 +74,20 @@
       						<table class="table">
       							<tr>
       								<td>Kode Lapak</td>
-      								<td><input class="form-control input-lg" type="text" id="kode_lapak" name="kode_lapak" placeholder="Kode Lapak" required></td>
+      								<td><input class="form-control input-lg" type="text" id="kode_lapak" name="kode_lapak" placeholder="Kode Lapak"></td>
       							</tr>
       							<tr>
       								<td>Nama Lapak</td>
-      								<td><input class="form-control input-lg" type="text" id="nama_lapak" name="nama_lapak" placeholder="Nama Lapak" required></td>
+      								<td><input class="form-control input-lg" type="text" id="nama_lapak" name="nama_lapak" placeholder="Nama Lapak"></td>
       							</tr>
       							<tr>
-      								<td>Peringkat Lapak</td><td><input class="form-control input-lg" type="text" id="peringkat_lapak" name="peringkat_lapak" placeholder="Peringkat Lapak" required></td>
+      								<td>Peringkat Lapak</td><td><input class="form-control input-lg" type="text" id="peringkat_lapak" name="peringkat_lapak" placeholder="Peringkat Lapak"></td>
       							</tr>
       						</table>
       				</div>
 	      			<div class="modal-footer">
-				        <button type="submit" class="btn btn-warning" id="tombol_action">OK</button>
+	      				<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+				        <button type="submit" class="btn btn-primary" id="tombol_action">Simpan</button>
 	      			</div>
     			</form>
    			 </div>
@@ -115,12 +123,47 @@
 				</table>
      		 </div>
       			<div class="modal-footer">
-        			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        			<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
       			</div>
     		</div>
  		</div>
 	</div> <!-- penutup detail -->
 
+	<!-- Modal Popup untuk Delete -->
+<div class="modal fade" id="modal_delete">
+	<div class="modal-dialog">
+		<div class="modal-content" style="margin-top: 100px;">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body">
+				<h4 class="modal-title" style="text-align: center;"> Yakin mau dihapus ?</h4>					
+			</div>
+			<div class="modal-footer" style="margin: 0px; border-top: 0px; text-align: center;">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+				<button class="btn btn-danger" id="delete_button">Hapus Data</button>
+			</div>
+		</div>	
+	</div>
+</div>
+
+<!-- Modal Popup untuk Aktif -->
+<div class="modal fade" id="modal_aktif">
+	<div class="modal-dialog">
+		<div class="modal-content" style="margin-top: 100px;">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body">
+				<h4 class="modal-title" style="text-align: center;"> Anda yakin ingin mengaktifkan data ini ?</h4>					
+			</div>
+			<div class="modal-footer" style="margin: 0px; border-top: 0px; text-align: center;">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+				<button class="btn btn-primary" id="actived_button">Aktifkan</button>
+			</div>
+		</div>	
+	</div>
+</div>
 
 </body>
 <script type="text/javascript">
@@ -182,9 +225,16 @@
 		e.preventDefault();
 		var action = $("#action").val();
 		var kode_lapak = $("#kode_lapak").val();
-
+		var nama_lapak = $("#nama_lapak").val();
+		var peringkat_lapak = $("#peringkat_lapak").val();
 		if (action=="Tambah") {
-			if (kode_lapak.length > 5 || kode_lapak.length < 5) {
+			if (nama_lapak == "") {
+				alert('Nama Lapak tidak boleh kosong!');
+			}else if (kode_lapak == ""){
+				alert('Kode Lapak tidak boleh kosong!');
+			}else if (peringkat_lapak == "") {
+				alert('Peringkat Lapak tidak boleh kosong!');
+			}else if (kode_lapak.length > 5 || kode_lapak.length < 5 ) {
 				alert('Karakter harus 5 digit!');
 			}else{
 				$.ajax({
@@ -214,7 +264,13 @@
 
 		//if edit
 		if (action=="Edit") {
-			if (kode_lapak.length > 5 || kode_lapak.length < 5) {
+			if (nama_lapak == "") {
+				alert('Nama Lapak tidak boleh kosong!');
+			}else if (kode_lapak == ""){
+				alert('Kode Lapak tidak boleh kosong!');
+			}else if (peringkat_lapak == "") {
+				alert('Peringkat Lapak tidak boleh kosong!');
+			}else if (kode_lapak.length > 5 || kode_lapak.length < 5 ) {
 				alert('Karakter harus 5 digit!');
 			}else{
 				$.ajax({
@@ -241,7 +297,6 @@
 				}); //penutup ajax
 			}
 		}
-
 	});
 
 	//pop detail
@@ -256,7 +311,7 @@
 					$("#kode_lapak_detail").text(html.data[0].kode_lapak);
 					$("#nama_lapak_detail").text(html.data[0].nama_lapak);
 					$("#peringkat_lapak_detail").text(html.data[0].peringkat_lapak);
-					$("#tombol_action").text('Update Data');
+					$("#tombol_action").text('Ubah Data');
 					$("#myModalDetail").modal('show');
 			}
 		});
@@ -275,16 +330,59 @@
 				$("#peringkat_lapak").val(html.data[0].peringkat_lapak);
 				$("#action").val('Edit');
 				$(".modal-title-add").text('Ubah Data');
-				$("#tombol_action").text('Update Data');
+				$("#tombol_action").text('Ubah Data');
 				$("#myModal").modal('show');
 			}
 		});
 	});//penutup edit
 
 	//delete(show modal)
+	var id_delete;
+	$(document).on('click','.hapus',function(){
+		id_delete = $(this).attr("id");
+		$("#modal_delete").modal('show');
+	});//penutup delete(show modal)
 
+	//action delete
+	$("#delete_button").click(function(){
+		$.ajax({
+		url:"/lapak/hapus/"+id_delete,
+		beforeSend:function(){
+			$("#delete_button").text('Deleting...');
+		},
+			success:function(){
+				setTimeout(function(){
+					$("#modal_delete").modal('hide');
+					$("#delete_button").text('OK');
+					$("#myTable").DataTable().ajax.reload();
+				},500);
+			}
+		});
+	});
+	//aktif(show modal)
+	var aktif;
+	$(document).on('click','.status',function(){
+		aktif = $(this).attr("id");
+		$("#modal_aktif").modal('show');
+	});//penutup aktif(show modal)
 
+	//action aktif
+	$("#actived_button").click(function(){
+		$.ajax({
+		url:"/lapak/status/"+aktif,
+		beforeSend:function(){
+			$("#actived_button").text('Actived...');
+		},
+			success:function(){
+				setTimeout(function(){
+					$("#modal_aktif").modal('hide');
+					$("#actived_button").text('OK');
+					$("#myTable").DataTable().ajax.reload();
+				},500);
+			}
+		});
+	});
+});//tutup function
 
-}); //penutupreadyfunction
 </script>
 </html>
