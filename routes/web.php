@@ -24,8 +24,9 @@ Route::get('/pengaturan', function () {
     return view('setting');
 });
 
-Route::get('/','HomeController@index');
 
+/*route item*/
+Route::get('/','HomeController@index');
 Route::get('/item','ItemController@index');
 Route::post('/item/tambah','ItemController@tambah');
 Route::get('/item/ubah/{id}','ItemController@edit');
@@ -42,6 +43,8 @@ Route::get('/lapak/lihat/{id}', 'LapakController@lihat');
 Route::get('/lapak/edit/{id}', 'LapakController@edit');
 Route::post('/lapak/update', 'LapakController@ubah');
 
+
+//route provinsi
 Route::get('/provinsi','ProvinsiController@index');
 Route::post('/provinsi/add','ProvinsiController@add');
 Route::get('/provinsi/edit/{id}','ProvinsiController@edit');
@@ -51,8 +54,11 @@ Route::get('/provinsi/hapus/{id}','ProvinsiController@hapus');
 Route::get('/provinsi/aktif/{id}','ProvinsiController@aktif');
 
 
+//routing pilihan
 Route::get('/pilihan','PilihanController@index');
 Route::post('/pilihan/tambah','PilihanController@tambah');
 Route::get('/pilihan/ubah/{id}','PilihanController@ubah');
 Route::post('/pilihan/menambahkan','PilihanController@menambahkan');
-
+Route::get('/pilihan/lihat/{id}','PilihanController@lihat');
+Route::get('/pilihan/hapus/{id}','PilihanController@hapus');
+Route::get('/pilihan/status/{id}','PilihanController@status');

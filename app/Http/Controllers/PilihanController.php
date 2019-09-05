@@ -9,41 +9,46 @@ class PilihanController extends Controller
 {
     public function index(){
     	if (request()->ajax()){
-    		return datatables()->of(pilihan::latest()->get())
+    		return datatables()->of(pilihan::all())
     		//tombol status
     		->addColumn('status',function($data){
 				if ($data->isdelete==0){
-				$button= '<button type="button" name="satatus" id="'.$data->kode_pilihan.'" class="btn btn-outline-dark btn-sm">Non Aktifkan</button>';
+				$button	= '<button type="button" name="aktifkan" id="'.$data->kode_pilihan.'" class="status btn btn-info btn-sm">Aktifkan</button>';
 				$button .="&nbsp;&nbsp;";
-				$button	.= '<button type="button" name="satatus" id="'.$data->kode_pilihan.'" class="status btn btn-outline-warning btn-sm">Aktifkan</button>';
+				$button .= '<button type="button" name="nonaktif" id="'.$data->kode_pilihan.'" class="btn alert-danger btn-sm">Non Aktif</button>';
 				return $button;
 
 				}else{
-				$button= '<button type="button" name="satatus" id="'.$data->kode_pilihan.'" class="btn btn-outline-success btn-sm" colspan="2"></button>';
+				$button= '<button type="button" name="aktif id="'.$data->kode_pilihan.'" class=" btn btn-success disabled btn-sm" colspan="2">Aktif</button>';
 					return $button;
 				}
 			})
 
     		//tombol ubah
     		->addColumn('ubah',function($data){
-    		$button='<button type="button" id="' .$data->kode_pilihan.'"  name="ubah" class="ubah btn btn-warning btn-sm">Ubah</button>';
+    		$button='<button type="button" id="' .$data->kode_pilihan.'"  name="ubah" class="ubah btn btn-primary btn-sm">Ubah</button>';
 				return $button;
     		})
 
     		//tombol lihat
 			->addColumn('lihat',function($data){
-				$button='<button type="button" id="' .$data->kode_pilihan.'"name="lihat" class="lihat btn btn-primary btn-sm">Lihat</button>';
+				$button='<button type="button" id="' .$data->kode_pilihan.'"name="lihat" class="lihat btn btn-secondary btn-sm">Lihat</button>';
 				return $button;
 
 			})
 
 			//tombol hapus
 			->addColumn('hapus',function($data){
-				$button='<button type="button" id="' .$data->kode_pilihan.'" name="hapus" class="hapus btn btn-danger btn-sm">hapus</button>';
-				return $button;
+				if ($data->isdelete == 1) {
+                    $button = '<button type="button" name="hapus" id="'.$data->kode_pilihan.'" class="hapus btn btn-danger btn-sm">Hapus</button>';
+                    return $button;
+                    
+                }else {
+
+                }
 			})
 
-    		->rawColumns(array("ubah","status","lihat","hapus"))
+    		->rawColumns(array("status","ubah","lihat","hapus"))
 			->make(true);
 			}
 			return view('index_pilihan');
@@ -85,7 +90,7 @@ class PilihanController extends Controller
 		{
     	// $isdelete = 1;
         $form_data = array(
-    		'nama_pilihan' => $request->nama_pilihan,
+    		'nama_pilihan' 			=> $request->nama_pilihan,
     		'diskon_pilihan'		 => $request->diskon_pilihan,
     	);
 
@@ -94,6 +99,40 @@ class PilihanController extends Controller
     	return response()->json(['success'=>'Data berhasil diupdate.']);
 
     	}
+
+    	public function lihat(Request $request,$kode_pilihan){
+			if ($request->ajax()) {
+				$data = pilihan::where('kode_pilihan','=',$kode_pilihan)->get();
+				return response()->json(['data'=>$data]);
+			}
+		}
+
+
+		public function hapus($kode_pilihan){
+	    	$isdelete = 0;
+	        $form_data = array(
+	    		'isdelete'=>$isdelete
+	    	);
+
+	        $kodepel = pilihan::where('kode_pilihan', '=', $kode_pilihan)->update($form_data);
+
+	    	return response()->json(['success'=>'Data berhasil di umpetin.']);
+
+	    }
+
+	    public function status($kode_pilihan){
+	    	$isdelete = 1;
+	        $form_data = array(
+	    		'isdelete'=>$isdelete
+	    	);
+
+	        $kodepel = pilihan::where('kode_pilihan',$kode_pilihan)->update($form_data);
+
+	    	return response()->json(['success'=>'Data berhasil di umpetin.']);
+
+    }
+
+
 
 
 

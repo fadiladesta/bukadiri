@@ -14,8 +14,8 @@ class CreatePilihanTable extends Migration
     public function up()
     {
         Schema::create('pilihan', function (Blueprint $table) {
-            $table->primary('kode_pilihan');
             $table->string('kode_pilihan',5);
+            $table->primary('kode_pilihan');
             $table->string('nama_pilihan');
             $table->integer('diskon_pilihan')->nullable(true);
             $table->integer('isdelete');
