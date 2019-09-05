@@ -19,8 +19,8 @@
 		
 	<div style="text-align: right;">
 			<center><img src="logobukadiri.jpg" width="30%" height="30%"></center>
-			<button class="btn btn-primary active">Home</button>
-			<button class="btn btn-primary">Setting</button>
+			<button class="btn btn-primary" onclick="window.location.href='/'">Halaman Utama</button>
+			<button class="btn btn-primary" onclick="window.location.href='/'">Pengaturan</button>
 	</div>
 
 	<center><div class="btn-group btn-group-toggle" data-toggle="buttons" >
@@ -33,7 +33,8 @@
 		<div>
 		<button type="button" class="btn btn-primary" data-toggle="modal" id="buttonAdd">
   Tambah</button>
-
+ <!--  <button type="button" class="btn btn-primary" data-toggle="modal" id="buttonEdit">
+  Edit Data</button>  -->
   <br><br>
  	 <span id="notif">
 		   
@@ -54,7 +55,7 @@
 		</table>
 </div> <!-- penutup kontainer -->
 
-<!-- modal tambah dan edit -->
+<!-- modal tambah -->
 <div id="myModal" class="modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -67,19 +68,19 @@
 		        </button>
 		      </div>
 		      <div class="modal-body">
-		      	
+		      	<input type="hidden" name="action" id="action">
 		       <table>
 		       	<tr>
 		       		<td>Kode Provinsi</td>
-		       		<td><input type="text" name="kode_provinsi" id="kode_provinsi" placeholder="Kode Provinsi"></td>
+		       		<td><input type="text" name="kode_provinsi" id="kode_provinsi" placeholder="Kode Provinsi" required=""></td>
 		       	</tr>
 		       	<tr>
 		       		<td>Nama Provinsi</td>
-		       		<td><input type="text" name="nama_provinsi" id="nama_provinsi" placeholder="Nama Provinsi"></td>
+		       		<td><input type="text" name="nama_provinsi" id="nama_provinsi" placeholder="Nama Provinsi" required=""></td>
 		       	</tr>
 		       	<tr>
 		       		<td>Jumlah Kota Provinsi</td>
-		       		<td><input type="text" name="jumlah_kota_provinsi" id="jumlah_kota_provinsi" placeholder="Jumlah Kota Provinsi"></td>
+		       		<td><input type="text" name="jumlah_kota_provinsi" id="jumlah_kota_provinsi" placeholder="Jumlah Kota Provinsi" required=""></td>
 		       	</tr>
 		       </table>
 		         </div>
@@ -104,7 +105,7 @@
 					 <span aria-hidden="true">&times;</span>		
 				</div>
 				<div class="modal-body">
-					<input type="text" name="detail" id="detail">
+					<input type="hidden" name="action" id="action">
 					<table>
 						<tr>
 							<td>Kode Provinsi</td>
@@ -142,7 +143,7 @@
 				</div>			
 				<div class="modal-footer" style="margin: 0px; border-top:0px; text-align:center;">
 				<button class="btn btn-danger" id="delete_button">Hapus</button>
-				<button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
 			</div>
 		</div>
 	</div>
@@ -161,7 +162,7 @@
 			</div>			
 			<div class="modal-footer" style="margin: 0px; border-top:0px; text-align:center;">
 				<button class="btn btn-danger" id="aktif_button">Aktif</button>
-				<button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
 			</div>
 		</div>
 	</div>
@@ -174,7 +175,7 @@
 		$("#buttonAdd").click(function(){  //klik buttonAdd
 			$(".modal-title").text('Tambah Data Provinsi'); //muncul title modal
 			$("#tombol_action").text('OK'); //nama tombol
-			//$("#action").val('Tambah') //set value di id:action
+			$("#action").val('Tambah') //set value di id:action
 			$("#myModal").modal('show'); //menampilkan modal
 		});
 
@@ -183,20 +184,12 @@
 			e.preventDefault();
 			var action= $("#action").val(); //get value
 			var kode_provinsi = $("#kode_provinsi").val();
-			var nama_provinsi = $("#nama_provinsi").val();
-			var jumlah_kota_provinsi = $("#jumlah_kota_provinsi").val();
-			//if (action == "tambah") {
 			
 			if (action=='Tambah') { //ketika action tambah tambah
 				//alert("ajax untuk tambah");
-				if (kode_provinsi == "") {
-					alert('Kode provinsi tidak boleh kosong');
-				}else if (nama_provinsi == "") {
-					alert('Nama provinsi tidak boleh kosong');
-				}else if (jumlah_kota_provinsi == "") {
-					alert('Jumlah kota provinsi tidak boleh kosong');
-				}else if (kode_provinsi.length > 5 || kode_provinsi.length < 5) {
-					alert('Karakter harus 5 digit');
+				if (kode_provinsi.length > 5 || kode_provinsi.length <5) {
+					alert('karakter harus 5 digit');
+
 				}else{
 					$.ajax({
 					url: "/provinsi/add",
@@ -334,15 +327,15 @@
 					$("#kode_provinsi_detail").text(detail.data[0].kode_provinsi);
 					$("#nama_provinsi_detail").text(detail.data[0].nama_provinsi);
 					$("#jumlah_kota_provinsi_detail").text(detail.data[0].jumlah_kota_provinsi);
-
-					$("#detail").val('Detail'); //aet value di id:detail
+					
 					$("#myModalDetail").modal('show');
+
+
 				}
 			});
 		});
 
 
-		//hapus
 		var hapus;
 		$(document).on('click','.delete',function(){
 			hapus = $(this).attr('id');
@@ -365,8 +358,6 @@
 			});
 		});
 
-
-		//aktif
 		var aktif;
 		$(document).on('click','.aktif',function(){
 			aktif = $(this).attr('id');
