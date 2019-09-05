@@ -25,19 +25,19 @@ class ProvinsiController extends Controller
                             $button = '<button type="button" id="'.$data->kode_provinsi.'"class="delete btn btn-danger btn-sm">Delete</button>';
                             return $button;
                             }else{
-                            	$button = '<button type="button" id="'.$data->kode_provinsi.'"class="delete btn btn-link btn-sm">Delete</button>';
-                            return $button;
+                            	
                             }
                            }) 
                             ->addColumn('isdelete',function($data){
                           	if ($data->isdelete==0) {
-                          		$button = '<button type="button" id="'.$data->kode_provinsi.'"class="aktif btn btn-outline-info btn-sm">Aktif</button>';
+                          		$button = '<button type="button" id="'.$data->kode_provinsi.'"class="aktif btn btn-info btn-sm">Aktif</button>';
                             return $button;
                           	} else {
-                          		$button = '<button type="button" id="'.$data->kode_provinsi.'"class="nonaktif btn btn-outline-info btn-sm">Non Aktif</button>';
+                          		$button = '<button type="button" id="'.$data->kode_provinsi.'"class="aktif btn btn-outline-success btn-sm">Aktif</button>'.'  '.'<button type="button" id="'.$data->kode_provinsi.'"class="nonaktif btn btn-outline-info btn-sm">Non Aktif</button>';
                           		 return $button;		
                           	}
-                       		 })                        
+                       		 })
+
                         ->rawcolumns(array("lihat","ubah","hapus","isdelete"))
                         ->make(true);
           }
@@ -47,8 +47,8 @@ class ProvinsiController extends Controller
 
     //add
     public function add(Request $request){
-	$isdelete = 1; //set value 1
- 	$form_data = array(
+  	$isdelete = 1; //set value 1
+   	$form_data = array(
  		'kode_provinsi' => $request->kode_provinsi,
  		'nama_provinsi' => $request->nama_provinsi,
  		'jumlah_kota_provinsi' => $request->jumlah_kota_provinsi,
@@ -89,5 +89,34 @@ class ProvinsiController extends Controller
  	$kodeProv = Provinsi::where ('kode_provinsi', '=' ,$request->kode_provinsi)->update($form_data);
  	return response()->json(['success'=>'Data berhasil diupdate']);	
     } //penutup Update
+
+    
+    public function lihat(Request $request,$id)
+    {
+        if ($request->ajax()) {
+            $data = Provinsi::where('kode_provinsi','=',$request->id)->get();
+            return response()->json(['data'=>$data]);
+        }
+    }
+
+    public function hapus($id)
+    {
+      $isdelete=0;
+      $form_data=array(
+        'isdelete'=> $isdelete
+      );
+      Provinsi::where('kode_provinsi','=',$id)->update($form_data);
+    }
+
+    public function aktif($id)
+    {     
+      $isdelete = 1;
+    $form_data = array(
+    'isdelete' => $isdelete
+    );
+
+    Provinsi::where ('kode_provinsi', '=' ,$id)->update($form_data);
+      }
+
 
 }
