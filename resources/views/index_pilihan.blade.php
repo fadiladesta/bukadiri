@@ -171,7 +171,7 @@ $("#buttonAdd").click(function(){
 				processing : true,
 				serverside:true,
 				ajax:{
-					url: '/index_pilihan',
+					url: '/pilihan',
 				},
 				columns:[
 					{
