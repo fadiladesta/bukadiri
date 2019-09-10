@@ -288,13 +288,20 @@
 		$("#formProvinsi").on('submit',function(e){
 			e.preventDefault();
 			var action= $("#action").val(); //get value
-			var kode_provinsi = $("#kode_provinsi").val();
+			var kode_provinsi = $("#kode_provinsi").val(); 
+			var nama_provinsi = $("#nama_provinsi").val();
+			var jumlah_kota_provinsi = $("#jumlah_kota_provinsi").val();
 			
 			if (action=='Update Data') { //jika action = update data
 				//alert("ajax untuk tambah");
-				if (kode_provinsi.length > 5 || kode_provinsi.length <5) {
-					alert('karakter harus 5 digit');
-
+				if (kode_provinsi == "") {
+					alert('Kode provinsi tidak boleh kosong');
+				}else if (nama_provinsi == "") {
+					alert('Nama provinsi tidak boleh kosong');
+				}else if (jumlah_kota_provinsi == "") {
+					alert('Jumlah kota provinsi tidak boleh kosong');
+				}else if (kode_provinsi.length > 5 || kode_provinsi.length < 5) {
+					alert('Karakter harus 5 digit');
 				}else{
 					$.ajax({
 					url: "/provinsi/update",
