@@ -33,7 +33,7 @@ class ProvinsiController extends Controller
                               $button = '<button type="button" id="'.$data->kode_provinsi.'"class="aktif btn btn-info btn-sm">Aktif</button>';
                             return $button;
                             } else {
-                              $button = '<button type="button" id="'.$data->kode_provinsi.'"class="aktif btn btn-outline-success btn-sm">Aktif</button>'.'  '.'<button type="button" id="'.$data->kode_provinsi.'"class="nonaktif btn btn-outline-info btn-sm">Non Aktif</button>';
+                              $button = '<button type="button" id="'.$data->kode_provinsi.'"class="aktif btn btn-outline-success btn-sm">Aktif</button>'.' '.'<button type="button" id="'.$data->kode_provinsi.'"class="nonaktif btn btn-outline-info btn-sm">Non Aktif</button>';
                                return $button;    
                             }
                            })

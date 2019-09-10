@@ -33,8 +33,7 @@
 		<div>
 		<button type="button" class="btn btn-primary" data-toggle="modal" id="buttonAdd">
   Tambah</button>
- <!--  <button type="button" class="btn btn-primary" data-toggle="modal" id="buttonEdit">
-  Edit Data</button>  -->
+ 
   <br><br>
  	 <span id="notif">
 		   
@@ -72,15 +71,15 @@
 		       <table>
 		       	<tr>
 		       		<td>Kode Provinsi</td>
-		       		<td><input type="text" name="kode_provinsi" id="kode_provinsi" placeholder="Kode Provinsi" required=""></td>
+		       		<td><input type="text" name="kode_provinsi" id="kode_provinsi" placeholder="Kode Provinsi"></td>
 		       	</tr>
 		       	<tr>
 		       		<td>Nama Provinsi</td>
-		       		<td><input type="text" name="nama_provinsi" id="nama_provinsi" placeholder="Nama Provinsi" required=""></td>
+		       		<td><input type="text" name="nama_provinsi" id="nama_provinsi" placeholder="Nama Provinsi"></td>
 		       	</tr>
 		       	<tr>
 		       		<td>Jumlah Kota Provinsi</td>
-		       		<td><input type="text" name="jumlah_kota_provinsi" id="jumlah_kota_provinsi" placeholder="Jumlah Kota Provinsi" required=""></td>
+		       		<td><input type="text" name="jumlah_kota_provinsi" id="jumlah_kota_provinsi" placeholder="Jumlah Kota Provinsi"></td>
 		       	</tr>
 		       </table>
 		         </div>
@@ -184,12 +183,19 @@
 			e.preventDefault();
 			var action= $("#action").val(); //get value
 			var kode_provinsi = $("#kode_provinsi").val();
+			var nama_provinsi = $("#nama_provinsi").val();
+			var jumlah_kota_provinsi = $("#jumlah_kota_provinsi").val();
 			
 			if (action=='Tambah') { //ketika action tambah tambah
 				//alert("ajax untuk tambah");
-				if (kode_provinsi.length > 5 || kode_provinsi.length <5) {
-					alert('karakter harus 5 digit');
-
+				if (kode_provinsi == "") {
+					alert('Kode provinsi tidak boleh kosong');
+				}else if (nama_provinsi == "") {
+					alert('Nama provinsi tidak boleh kosong');
+				}else if (jumlah_kota_provinsi == "") {
+					alert('Jumlah kota provinsi tidak boleh kosong');
+				}else if (kode_provinsi.length > 5 || kode_provinsi.length < 5) {
+					alert('Karakter harus 5 digit');
 				}else{
 					$.ajax({
 					url: "/provinsi/add",
