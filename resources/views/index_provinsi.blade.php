@@ -327,7 +327,7 @@
 						}
 				}); //penutup
 				}
-			} //if tambah
+			} //if update
 		});
 
         //detail
@@ -343,7 +343,6 @@
 					
 					$("#myModalDetail").modal('show');
 
-
 				}
 			});
 		});
@@ -358,7 +357,7 @@
 		$("#delete_button").click(function(){
 			$.ajax({
 				url:"/provinsi/hapus/"+hapus,
-				beforesend:function(){
+				beforeSend:function(){
 					$("#delete_button").text('Sedang menghapus...');
 				},
 				success:function(){
