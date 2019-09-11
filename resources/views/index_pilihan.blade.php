@@ -45,8 +45,7 @@
 		<h1 style="text-align: center;">Data Pilihan</h1>
 		<!-- button add -->
 
-		<button type="button" class="btn btn-primary" data-toggle="modal" id="buttonAdd">
-  Tambah</button><br><br>
+	
 
 		<button type="button" class="btn btn-primary " data-toggle="modal" id="buttonAdd">Tambah</button><br><br>
 
