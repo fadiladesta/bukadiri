@@ -28,7 +28,7 @@
 		    <button class="btn btn-light" onclick="window.location.href='/pilihan'">Pilihan</button>
 		    <button class="btn btn-light" onclick="window.location.href='/lapak'">Lapak</button>
 		    <button class="btn btn-light" onclick="window.location.href='/item'">Item</button>
-			</div></center><br>
+			</div></center><hr><br>
 		<h3 style="text-align: center;">DATA PROVINSI</h3>
 		<div>
 		<button type="button" class="btn btn-primary" data-toggle="modal" id="buttonAdd">
@@ -269,6 +269,7 @@
 					$("#jumlah_kota_provinsi").val(ubah.data[0].jumlah_kota_provinsi);
 
 					$(".modal-title").text('Edit Data Provinsi'); //set title popup
+					$('#kode_provinsi').attr('readonly',true);
 					$("#tombol_action").text('Edit'); //set nama tombol dari id tombol_action
 					$("#action").val('Update Data'); //sett value pada input dengan id action
 					$("#myModal").modal('show'); //menampilkan modal
