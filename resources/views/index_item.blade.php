@@ -26,10 +26,10 @@
 		</div>
 
 		<center><div class="btn-group btn-group-toggle" data-toggle="buttons">
-		    <button class="btn btn-light btn-sm" onclick="window.location.href='/provinsi'">Provinsi</button>
-		    <button class="btn btn-light btn-sm" onclick="window.location.href='/pilihan'">Pilihan</button>
-		    <button class="btn btn-light btn-sm" onclick="window.location.href='/lapak'">Lapak</button>
-		    <button class="btn btn-success btn-sm active" onclick="window.location.href='/'">Item</button>
+		    <button class="btn btn-light" onclick="window.location.href='/provinsi'">Provinsi</button>
+		    <button class="btn btn-light" onclick="window.location.href='/pilihan'">Pilihan</button>
+		    <button class="btn btn-light" onclick="window.location.href='/lapak'">Lapak</button>
+		    <button class="btn btn-success active" onclick="window.location.href='/'">Item</button>
 		</div><hr><br></center>
 
 		<h4 style="text-align: center">Data Item</h4>
@@ -172,7 +172,7 @@
 		        </table>
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
 		      </div>
 		    </form>
 	    </div>

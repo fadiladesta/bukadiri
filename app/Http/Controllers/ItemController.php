@@ -42,9 +42,9 @@ class ItemController extends Controller
             ->rawColumns(array("status","lihat","ubah","hapus"))
             ->make(true);
         }
-        $pilihans 	= pilihan::select('kode_pilihan')->get();
-        $provinsis  = Provinsi::select('kode_provinsi')->get();
-        $lapaks  	= Lapak::select('kode_lapak')->get();
+        $pilihans 	= pilihan::select('kode_pilihan')->where('isdelete','=','1')->get();
+        $provinsis  = Provinsi::select('kode_provinsi')->where('isdelete','=','1')->get();
+        $lapaks  	= Lapak::select('kode_lapak')->where('is_delete','=','1')->get();
     	return View::make('index_item')->with('pilihans',$pilihans)->with('provinsis',$provinsis)->with('lapaks',$lapaks);
     }
 
@@ -106,7 +106,8 @@ class ItemController extends Controller
     public function hapus($id){
         $isdelete = 0;
         $form_data = array(
-            'isDelete'      => $isdelete
+            'isDelete'      => $isdelete,
+            'tanggal_hapus' => date('Y-m-d H:i:s')
         );
 
         Item::where('kode_item','=', $id)->update($form_data);
@@ -117,7 +118,8 @@ class ItemController extends Controller
     public function aktif($id){
         $isdelete = 1;
         $form_data = array(
-            'isDelete'      => $isdelete
+            'isDelete'      => $isdelete,
+            'tanggal_hapus' => NULL
         );
 
         Item::where('kode_item','=', $id)->update($form_data);
