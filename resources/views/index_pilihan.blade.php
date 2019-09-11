@@ -44,12 +44,12 @@
 		</div></center><hr><br>
 		<h1 style="text-align: center;">Data Pilihan</h1>
 		<!-- button add -->
-<<<<<<< HEAD
+
 		<button type="button" class="btn btn-primary" data-toggle="modal" id="buttonAdd">
   Tambah</button><br><br>
-=======
+
 		<button type="button" class="btn btn-primary " data-toggle="modal" id="buttonAdd">Tambah</button><br><br>
->>>>>>> 644e79e54ee7780dea6dc72b8420c25f59dda459
+
 		<span id="notif">
 		</span>
 
