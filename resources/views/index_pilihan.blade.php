@@ -43,9 +43,8 @@
 		    <button class="btn btn-light " onclick="window.location.href='/item'">Item</button>
 		</div></center><hr><br>
 		<h1 style="text-align: center;">Data Pilihan</h1>
-		<hr>
 		<!-- button add -->
-		<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" id="buttonAdd">Tambah</button><br><br>
+		<button type="button" class="btn btn-primary " data-toggle="modal" id="buttonAdd">Tambah</button><br><br>
 		<span id="notif">
 		</span>
 
