@@ -111,7 +111,8 @@ class PilihanController extends Controller
 		public function hapus($kode_pilihan){
 	    	$isdelete = 0;
 	        $form_data = array(
-	    		'isdelete'=>$isdelete
+	    		'isdelete'=>$isdelete,
+	    		'tanggal_hapus'=>date('Y-d-m H:i:s')
 	    	);
 
 	        $kodepel = pilihan::where('kode_pilihan', '=', $kode_pilihan)->update($form_data);
@@ -123,7 +124,8 @@ class PilihanController extends Controller
 	    public function status($kode_pilihan){
 	    	$isdelete = 1;
 	        $form_data = array(
-	    		'isdelete'=>$isdelete
+	    		'isdelete'=>$isdelete,
+	    		'tanggal_hapus'=>null
 	    	);
 
 	        $kodepel = pilihan::where('kode_pilihan',$kode_pilihan)->update($form_data);

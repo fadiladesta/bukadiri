@@ -37,9 +37,9 @@
 		</div>
 
 		<center><div class="btn-group btn-group-toggle" data-toggle="buttons">
-		    <button class="btn btn-light" onclick="window.location.href='/provinsi'">Provinsi</button>
-		    <button class="btn btn-success active" onclick="window.location.href='/pilihan'">Pilihan</button>
-		    <button class="btn btn-light" onclick="window.location.href='/lapak'">Lapak</button>
+		    <button class="btn btn-light " onclick="window.location.href='/provinsi'">Provinsi</button>
+		    <button class="btn btn-success  active" onclick="window.location.href='/pilihan'">Pilihan</button>
+		    <button class="btn btn-light " onclick="window.location.href='/lapak'">Lapak</button>
 		    <button class="btn btn-light " onclick="window.location.href='/item'">Item</button>
 		</div></center><hr><br>
 		<h1 style="text-align: center;">Data Pilihan</h1>
@@ -217,6 +217,7 @@
 $("#buttonAdd").click(function(){
 			$(".modal-title-add").text('Tambah Data');
 			$("#buttonSimpan").text('Tambah Data'); // id button save
+			$('#kode_pilihan').attr('readonly',false);
 			$("#action").val('tambah'); // id input 
 			$('#modalPilihan').modal('show'); // menampilkan modal show		
 		});
@@ -342,7 +343,7 @@ $('#modalPilihan').on('hidden.bs.modal',function(e){
 						$("#tablePilihan").DataTable().ajax.reload();
 					$("#notif").html(html);
 					}
-				}); // penutup ajax
+				}); // penutup ajax      
 				}
 				
 			} // tutup if tamabah
@@ -361,6 +362,7 @@ $('#modalPilihan').on('hidden.bs.modal',function(e){
 					$('#diskon_pilihan').val(html.data[0].diskon_pilihan);
 					/*$('#kode_pilihan').prop("readonly", true); // read only*/
 					$('.modal-title-add').text('Ubah Data');
+					$('#kode_pilihan').attr('readonly',true);
 					$('#action').val('ubah');
 					$('#tombolSimpan').text('simpan');
 					$("#modalPilihan").modal("show");
@@ -405,8 +407,8 @@ $('#modalPilihan').on('hidden.bs.modal',function(e){
 						},
 						success:function(){
 							setTimeout(function(){
-								$("#modalPilihanHapus").modal('hide');
 								$("#pilihanHapus").text('OK');
+								$("#modalPilihanHapus").modal('hide');
 								$("#tablePilihan").DataTable().ajax.reload();
 							},500);
 							}
