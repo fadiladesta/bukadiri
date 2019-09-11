@@ -43,7 +43,7 @@ Route::get('/lapak/lihat/{id}', 'LapakController@lihat');
 Route::get('/lapak/edit/{id}', 'LapakController@edit');
 Route::post('/lapak/update', 'LapakController@ubah');
 Route::get('/lapak/hapus/{id}','LapakController@hapus');
-Route::get('/lapak/aktif/{id}','LapakController@aktif');
+Route::get('/lapak/status/{id}','LapakController@status');
 
 
 //route provinsi
