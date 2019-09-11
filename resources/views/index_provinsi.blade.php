@@ -95,16 +95,14 @@
 <!-- Modal Detail -->
 <div id="myModalDetail" class="modal" tabindex="-1" role="dialog">
 	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<form id="formProvinsi">
-				@csrf
+		<div class="modal-content">				
 				<div class="modal-header">
 					<h5 class="modal-title-detail">Detail Data Provinsi</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>	
 					 <span aria-hidden="true">&times;</span>		
 				</div>
 				<div class="modal-body">
-					<input type="hidden" name="action" id="action">
+					<input type="hidden" name="lihat" id="lihat">
 					<table>
 						<tr>
 							<td>Kode Provinsi</td>
@@ -121,10 +119,9 @@
 					</table>
 				</div>
 				<div class="modal-footer">
-					<!--<button type="button" class="btn btn-secondary">close</button> -->
-					 <button type="submit" class="btn-primary" id="tombol_action">OK</button> 
- 				</div>
-			</form>		
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+					<!-- <button type="submit" class="btn-primary" id="tombol_action"></button> --> 
+ 				</div>			
 		</div>	
 	</div>	
 </div> <!-- penutup modal detail -->
@@ -224,7 +221,7 @@
 			} //if tambah
 		});
 		
-		$("#myTable").DataTable({ //setting pada kolom pada table untuk dapat diurutkan
+		$("#myTable").DataTable({ //setting table 
 			processing: true,
 			serverside: true,
 			ajax:{
@@ -242,7 +239,7 @@
 				{
 					data: 'isdelete',
 					name: 'isdelete',
-					orderable: false
+					orderable: false //kolom pada table untuk dapat diurutkan
 				},
 				{
 					data: 'lihat', 
@@ -258,19 +255,17 @@
 					data: 'hapus',
 					name: 'hapus',
 					orderable: false
-				},
-				
-							
+				},						
 			]
 		}); //penutup
-
+			//edit
 		$(document).on('click','.edit',function(){
 			var id = $(this).attr('id');
 			$.ajax({
 				url:"/provinsi/edit/"+id,
 				dataType:"json",
 				success:function(ubah){
-					$("#kode_provinsi").val(ubah.data[0].kode_provinsi); //data[0] artinya array dari data ke 0
+					$("#kode_provinsi").val(ubah.data[0].kode_provinsi); //data[0] artinya array ke 0
 					$("#nama_provinsi").val(ubah.data[0].nama_provinsi);
 					$("#jumlah_kota_provinsi").val(ubah.data[0].jumlah_kota_provinsi);
 
@@ -330,7 +325,7 @@
 			} //if update
 		});
 
-        //detail
+        //detail 
 		$(document).on('click','.detail',function(){
 			var id = $(this).attr('id');
 			$.ajax({
@@ -340,14 +335,14 @@
 					$("#kode_provinsi_detail").text(detail.data[0].kode_provinsi);
 					$("#nama_provinsi_detail").text(detail.data[0].nama_provinsi);
 					$("#jumlah_kota_provinsi_detail").text(detail.data[0].jumlah_kota_provinsi);
+
 					
 					$("#myModalDetail").modal('show');
-
 				}
 			});
-		});
+		}); //penutup detaile
 
-
+		//hapus
 		var hapus;
 		$(document).on('click','.delete',function(){
 			hapus = $(this).attr('id');
@@ -363,13 +358,13 @@
 				success:function(){
 					setTimeout(function(){
 						$("#myModalDelete").modal('hide');
-						$("#delete_button").text('Ok');
+						$("#delete_button").text('Hapus');
 						$("#myTable").DataTable().ajax.reload();
 					},500);
 				}
 			});
 		});
-
+			//aktifkan
 		var aktif;
 		$(document).on('click','.aktif',function(){
 			aktif = $(this).attr('id');

@@ -25,12 +25,12 @@ class ProvinsiController extends Controller
                             $button = '<button type="button" id="'.$data->kode_provinsi.'"class="delete btn btn-danger btn-sm">Hapus</button>';
                             return $button;
                             }else{
-                              
+                               
                             }
                            }) 
                             ->addColumn('isdelete',function($data){
-                            if ($data->isdelete==0) {
-                              $button = '<button type="button" id="'.$data->kode_provinsi.'"class="aktif btn btn-info btn-sm">Aktif</button>';
+                            if ($data->isdelete==1) {
+                              $button = '<button type="button" id="'.$data->kode_provinsi.'"class="btn btn-info disabled btn-sm">Aktif</button>';
                             return $button;
                             } else {
                               $button = '<button type="button" id="'.$data->kode_provinsi.'"class="aktif btn btn-outline-success btn-sm">Aktif</button>'.' '.'<button type="button" id="'.$data->kode_provinsi.'"class="nonaktif btn btn-outline-info btn-sm">Non Aktif</button>';
@@ -102,17 +102,26 @@ class ProvinsiController extends Controller
     public function hapus($id)
     {
       $isdelete=0;
+      $date=date_default_timezone_set("Asia/Jakarta");
+     
       $form_data=array(
-        'isdelete'=> $isdelete
+        'isdelete'=> $isdelete,
+        'tanggal_hapus'=> date("Y-m-d H:i:s")
       );
       Provinsi::where('kode_provinsi','=',$id)->update($form_data);
+
     }
 
     public function aktif($id)
     {     
       $isdelete = 1;
+     $tanggal_hapus =date_default_timezone_set("Asia/Jakarta");
+
+      //$Date1 = " ";
     $form_data = array(
-    'isdelete' => $isdelete
+    'isdelete' => $isdelete,
+    'tanggal_hapus' => Null
+
     );
 
     Provinsi::where ('kode_provinsi', '=' ,$id)->update($form_data);
